@@ -1,0 +1,9 @@
+server:
+  port: 8080
+
+nebula-graph:
+  host: 127.0.0.1
+  port: 9669
+  username: root
+  password: nuebla
+  space: rango
