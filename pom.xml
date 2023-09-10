@@ -4,13 +4,22 @@
          xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
     <modelVersion>4.0.0</modelVersion>
 
-    <groupId>m.rezaei</groupId>
-    <artifactId>AllBlockchainsMeta</artifactId>
+    <parent>
+        <groupId>org.springframework.boot</groupId>
+        <artifactId>spring-boot-dependencies</artifactId>
+        <version>3.1.3</version>
+    </parent>
+
+    <groupId>morez.blockchain-meta</groupId>
+    <artifactId>blockchains-meta</artifactId>
     <version>1.0-SNAPSHOT</version>
+    <name>Blockchains Meta</name>
     <packaging>pom</packaging>
-    <name>All Blockchains Meta</name>
 
     <modules>
         <module>nebula-graph-connector</module>
+        <module>swapper-extractor</module>
+        <module>model</module>
+        <module>main-service</module>
     </modules>
 </project>
