@@ -4,11 +4,11 @@
     <modelVersion>4.0.0</modelVersion>
     <parent>
         <groupId>morez.blockchain-meta</groupId>
-        <artifactId>blockchains-meta</artifactId>
+        <artifactId>blockchain-meta</artifactId>
         <version>1.0-SNAPSHOT</version>
     </parent>
 
-    <groupId>morez.blockchains-meta</groupId>
+    <groupId>morez.blockchain-meta</groupId>
     <artifactId>nebula-graph-connector</artifactId>
     <name>Blockchain Meta :: Connector :: Nebula</name>
 
@@ -18,6 +18,11 @@
     </properties>
 
     <dependencies>
+        <dependency>
+            <groupId>morez.blockchain-meta</groupId>
+            <artifactId>swapper-extractor</artifactId>
+            <version>1.0-SNAPSHOT</version>
+        </dependency>
         <!-- Nebula Graph Client -->
         <dependency>
             <groupId>com.vesoft</groupId>

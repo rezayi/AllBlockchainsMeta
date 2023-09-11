@@ -10,16 +10,24 @@ data class Token(
     val symbol: Symbol,
     val decimals: Int,
     val address: TokenAddress
-)
+) {
+    var id: Int? = null
+}
 
 data class Route(
     val srcToken: Token,
     val dstToken: Token,
-    val swapperName: String,
+    val routeMetaId: String,
     val routeInfo: Map<String, String>
 )
 
 data class SwapperMeta(
+    val name: String,
+    val type: SwapperType,
     val tokens: List<Token>,
     val routes: List<Route>
 )
+
+enum class SwapperType {
+    Swapper, Bridge
+}

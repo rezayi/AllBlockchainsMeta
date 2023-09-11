@@ -56,6 +56,7 @@ class CurveFinanceMetaExtractor(
                 srcToken = lpToken,
                 dstToken = memberToken,
                 swapperName = SWAPPER_NAME,
+                routeMetaId = pool.id,
                 routeInfo = mapOf(
                     "lpId" to pool.id,
                     "lpAddress" to pool.address
@@ -65,6 +66,7 @@ class CurveFinanceMetaExtractor(
                 srcToken = memberToken,
                 dstToken = lpToken,
                 swapperName = SWAPPER_NAME,
+                routeMetaId = pool.id,
                 routeInfo = mapOf(
                     "lpId" to pool.id,
                     "lpAddress" to pool.address
@@ -92,6 +94,7 @@ class CurveFinanceMetaExtractor(
                         srcToken = srcToken,
                         dstToken = dstToken,
                         swapperName = SWAPPER_NAME,
+                        routeMetaId = pool.id,
                         routeInfo = mapOf(
                             "lpId" to pool.id,
                             "lpAddress" to pool.address
