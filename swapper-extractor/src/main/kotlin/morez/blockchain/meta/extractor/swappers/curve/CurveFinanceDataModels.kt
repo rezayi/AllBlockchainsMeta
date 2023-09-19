@@ -23,7 +23,7 @@ data class CurveFinancePoolData(
     val coins: List<CurveFinanceCoin>,
     val underlyingCoins: List<CurveFinanceCoin>?
 ) {
-    fun toToken(blockchain: String) = Token(
+    fun toToken(blockchain: Blockchain) = Token(
         blockchain = blockchain,
         name = name,
         symbol = symbol,

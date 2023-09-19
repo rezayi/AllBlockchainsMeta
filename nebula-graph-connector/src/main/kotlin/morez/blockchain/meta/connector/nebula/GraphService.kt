@@ -20,12 +20,13 @@ class GraphService(
     }
 
     fun insertSwapper(
+        id:Int,
         route: Route
     ): ResultSet {
         val srcVid = "${route.srcToken.blockchain}_${if (route.srcToken.address.isEmpty()) "native" else route.srcToken.address.lowercase()}"
         val dstVid = "${route.dstToken.blockchain}_${if (route.dstToken.address.isEmpty()) "native" else route.dstToken.address.lowercase()}"
         return connector.sessionPool.execute(
-            "INSERT EDGE IF NOT EXISTS Swapper (name,meta-id) VALUES \"$srcVid\" -> \"$dstVid\" :(\"${route.swapperName},${route.routeMetaId}\") "
+            "INSERT EDGE IF NOT EXISTS Swapper () VALUES \"$srcVid\" -> \"$dstVid\"@$id :()"
         )
     }
 

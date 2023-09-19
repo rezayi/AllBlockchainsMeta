@@ -12,10 +12,6 @@
     <artifactId>main-service</artifactId>
     <name>Blockchain Meta :: Main Service</name>
     <description>main-service</description>
-    <properties>
-        <java.version>17</java.version>
-        <kotlin.version>1.8.22</kotlin.version>
-    </properties>
 
     <dependencies>
         <dependency>
@@ -46,15 +42,10 @@
             <groupId>org.jetbrains.kotlin</groupId>
             <artifactId>kotlin-reflect</artifactId>
         </dependency>
-        <dependency>
-            <groupId>org.jetbrains.kotlin</groupId>
-            <artifactId>kotlin-stdlib</artifactId>
-        </dependency>
     </dependencies>
 
     <build>
         <sourceDirectory>${project.basedir}/src/main/kotlin</sourceDirectory>
-        <testSourceDirectory>${project.basedir}/src/test/kotlin</testSourceDirectory>
         <plugins>
             <plugin>
                 <groupId>org.springframework.boot</groupId>

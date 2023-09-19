@@ -8,8 +8,8 @@ data class TokenEntity(
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     var id: Int? = null,
-    @Column(name = "blockchain")
-    var blockchain: String,
+    @Column(name = "blockchain_id")
+    var blockchainId: Int,
     @Column(name = "name")
     var name: String,
     @Column(name = "symbol")

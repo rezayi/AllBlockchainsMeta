@@ -1,7 +1,6 @@
 package morez.blockchain.meta.model
 
 typealias TokenAddress = String
-typealias Blockchain = String
 typealias Symbol = String
 
 data class Token(

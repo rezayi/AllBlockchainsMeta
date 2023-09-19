@@ -7,3 +7,14 @@ nebula-graph:
   username: root
   password: nuebla
   space: rango
+
+spring:
+  datasource:
+    url: jdbc:postgresql://localhost:5432/blockchainmeta
+    username: postgres
+    password: postgres
+    driverClassName: org.postgresql.Driver
+  jpa:
+    database-platform: org.hibernate.dialect.PostgreSQL10Dialect
+    hibernate:
+      ddl-auto: none

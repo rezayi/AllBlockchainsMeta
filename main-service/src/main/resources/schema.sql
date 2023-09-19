@@ -1,0 +1,125 @@
+-- ------------------------------------------------------------------------------------------------------------
+-- -- Blockchains Table ---------------------------------------------------------------------------------------
+-- ------------------------------------------------------------------------------------------------------------
+--
+-- CREATE TABLE public.blockchains
+-- (
+--     id      integer               NOT NULL,
+--     name    character varying(50) NOT NULL,
+--     type    character varying(50) NOT NULL,
+--     enabled boolean DEFAULT true  NOT NULL
+-- );
+--
+-- CREATE SEQUENCE public.blockchains_id_seq
+--     START WITH 1
+--     INCREMENT BY 1
+--     NO MINVALUE
+--     NO MAXVALUE CACHE 1;
+--
+--
+-- ALTER SEQUENCE public.blockchain_id_seq OWNED BY public.blockchains.id;
+--
+-- ALTER TABLE ONLY public.blockchains ALTER COLUMN id SET DEFAULT nextval('public.blockchains_id_seq'::regclass);
+--
+-- SELECT pg_catalog.setval('public.blockchain_id_seq', 1, false);
+--
+-- CREATE UNIQUE INDEX blockchains_id_uindex ON public.blockchains USING btree (id);
+--
+-- CREATE UNIQUE INDEX blockchains_name_uindex ON public.blockchains USING btree (name);
+--
+-- ------------------------------------------------------------------------------------------------------------
+-- -- Routes Table --------------------------------------------------------------------------------------------
+-- ------------------------------------------------------------------------------------------------------------
+--
+-- CREATE TABLE public.routes
+-- (
+--     id               integer              NOT NULL,
+--     swapper_id       integer              NOT NULL,
+--     src_token_id     integer              NOT NULL,
+--     dst_token_id     integer              NOT NULL,
+--     enable           boolean DEFAULT true NOT NULL,
+--     swapper_sub_path character varying(100)
+-- );
+--
+-- CREATE SEQUENCE public.routes_id_seq
+--     AS integer
+--     START WITH 1
+--     INCREMENT BY 1
+--     NO MINVALUE
+--     NO MAXVALUE CACHE 1;
+--
+--
+-- ALTER SEQUENCE public.routes_id_seq OWNED BY public.routes.id;
+--
+-- ALTER TABLE ONLY public.routes ALTER COLUMN id SET DEFAULT nextval('public.routes_id_seq'::regclass);
+--
+-- SELECT pg_catalog.setval('public.routes_id_seq', 1, false);
+--
+-- ALTER TABLE ONLY public.routes
+--     ADD CONSTRAINT routes_swappers_id_fk FOREIGN KEY (swapper_id) REFERENCES public.swappers(id);
+--
+-- ALTER TABLE ONLY public.routes
+--     ADD CONSTRAINT routes_tokens_id_dst_fk FOREIGN KEY (dst_token_id) REFERENCES public.tokens(id);
+--
+-- ALTER TABLE ONLY public.routes
+--     ADD CONSTRAINT routes_tokens_id_src_fk FOREIGN KEY (src_token_id) REFERENCES public.tokens(id);
+--
+-- ------------------------------------------------------------------------------------------------------------
+-- -- Swappers Table ------------------------------------------------------------------------------------------
+-- ------------------------------------------------------------------------------------------------------------
+--
+-- CREATE TABLE public.swappers
+-- (
+--     id      integer                NOT NULL,
+--     name    character varying(100) NOT NULL,
+--     type    character varying(10)  NOT NULL,
+--     enabled boolean DEFAULT true   NOT NULL
+-- );
+--
+-- CREATE SEQUENCE public.swappers_id_seq
+--     AS integer
+--     START WITH 1
+--     INCREMENT BY 1
+--     NO MINVALUE
+--     NO MAXVALUE CACHE 1;
+--
+-- ALTER SEQUENCE public.swappers_id_seq OWNED BY public.swappers.id;
+--
+-- ALTER TABLE ONLY public.swappers ALTER COLUMN id SET DEFAULT nextval('public.swappers_id_seq'::regclass);
+--
+-- SELECT pg_catalog.setval('public.swappers_id_seq', 1, false);
+--
+-- CREATE UNIQUE INDEX swappers_id_uindex ON public.swappers USING btree (id);
+--
+-- ------------------------------------------------------------------------------------------------------------
+-- -- Tokens Table --------------------------------------------------------------------------------------------
+-- ------------------------------------------------------------------------------------------------------------
+--
+-- CREATE TABLE public.tokens
+-- (
+--     id            integer                             NOT NULL,
+--     blockchain_id integer                             NOT NULL,
+--     name          character varying(100)              NOT NULL,
+--     symbol        character varying(100)              NOT NULL,
+--     address       character varying(100) DEFAULT 100,
+--     decimals      integer                             NOT NULL,
+--     enabled       boolean                DEFAULT true NOT NULL
+-- );
+--
+-- CREATE SEQUENCE public.tokens_id_seq
+--     AS integer
+--     START WITH 1
+--     INCREMENT BY 1
+--     NO MINVALUE
+--     NO MAXVALUE CACHE 1;
+--
+-- ALTER SEQUENCE public.tokens_id_seq OWNED BY public.tokens.id;
+--
+-- ALTER TABLE ONLY public.tokens ALTER COLUMN id SET DEFAULT nextval('public.tokens_id_seq'::regclass);
+--
+-- SELECT pg_catalog.setval('public.tokens_id_seq', 1, false);
+--
+-- CREATE UNIQUE INDEX tokens_id_uindex ON public.tokens USING btree (id);
+--
+-- ALTER TABLE ONLY public.tokens
+--     ADD CONSTRAINT tokens_blockchains_id_fk FOREIGN KEY (blockchain_id) REFERENCES public.blockchains(id);

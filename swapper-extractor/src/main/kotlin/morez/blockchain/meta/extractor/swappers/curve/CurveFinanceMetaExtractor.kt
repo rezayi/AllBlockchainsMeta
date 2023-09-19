@@ -1,10 +1,7 @@
 package morez.blockchain.meta.extractor.swappers.curve
 
 import morez.blockchain.meta.extractor.base.BaseMetaExtractor
-import morez.blockchain.meta.model.Route
-import morez.blockchain.meta.model.SwapperMeta
-import morez.blockchain.meta.model.Token
-import morez.blockchain.meta.model.TokenAddress
+import morez.blockchain.meta.model.*
 import org.springframework.stereotype.Service
 import org.springframework.web.client.RestTemplate
 
@@ -15,12 +12,11 @@ class CurveFinanceMetaExtractor(
     companion object {
         private const val SWAPPER_NAME = "CurveFi"
         private const val URL = "https://api.curve.fi/api/getPools/polygon/main"
-        private const val BLOCKCHAIN = "polygon"
+        private val BLOCKCHAIN = Blockchain.POLYGON
     }
 
     override fun fetchMeta(): SwapperMeta {
         val tokensMap: MutableMap<TokenAddress, Token> = mutableMapOf()
-
 
         val config = restTemplate.getForObject(URL, CurveFinanceConfig::class.java)
 
@@ -38,6 +34,8 @@ class CurveFinanceMetaExtractor(
             .orEmpty()
 
         return SwapperMeta(
+            name = SWAPPER_NAME,
+            type = SwapperType.Swapper,
             tokens = tokensMap.values.toList(),
             routes = routes
         )
@@ -55,7 +53,6 @@ class CurveFinanceMetaExtractor(
             Route(
                 srcToken = lpToken,
                 dstToken = memberToken,
-                swapperName = SWAPPER_NAME,
                 routeMetaId = pool.id,
                 routeInfo = mapOf(
                     "lpId" to pool.id,
@@ -65,7 +62,6 @@ class CurveFinanceMetaExtractor(
             Route(
                 srcToken = memberToken,
                 dstToken = lpToken,
-                swapperName = SWAPPER_NAME,
                 routeMetaId = pool.id,
                 routeInfo = mapOf(
                     "lpId" to pool.id,
@@ -93,7 +89,6 @@ class CurveFinanceMetaExtractor(
                     Route(
                         srcToken = srcToken,
                         dstToken = dstToken,
-                        swapperName = SWAPPER_NAME,
                         routeMetaId = pool.id,
                         routeInfo = mapOf(
                             "lpId" to pool.id,

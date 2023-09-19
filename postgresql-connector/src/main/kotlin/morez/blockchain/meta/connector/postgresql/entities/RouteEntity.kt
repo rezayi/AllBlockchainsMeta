@@ -3,7 +3,7 @@ package morez.blockchain.meta.connector.postgresql.entities
 import jakarta.persistence.*
 
 @Entity
-@Table(name = "swappers")
+@Table(name = "routes")
 data class RouteEntity(
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
